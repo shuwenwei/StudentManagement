@@ -18,6 +18,7 @@ import java.util.List;
 
 
 @RestController
+@RequiresRoles("admin")
 public class AdminController {
 
     private AdminService adminService;
@@ -39,7 +40,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @RequiresRoles("admin")
     @DeleteMapping("/user/{username}")
     public DefaultResponseBean deleteUser(@PathVariable String username) {
         if (adminService.deleteUser(username)) {
@@ -49,7 +49,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @PostMapping("/user")
     public DefaultResponseBean addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
@@ -66,7 +65,6 @@ public class AdminController {
         return new DefaultResponseBean("添加成功",null,1);
     }
 
-    @RequiresRoles("admin")
     @PutMapping("/user")
     public DefaultResponseBean updateUser(@RequestBody @Valid User user, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
@@ -84,7 +82,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @PutMapping("/user/info")
     public DefaultResponseBean updateUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
@@ -99,7 +96,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @PutMapping("/family")
     public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
@@ -114,7 +110,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @GetMapping("/user/info/{username}")
     public DefaultResponseBean getUserInfo(@PathVariable String username){
         UserInfo userInfo = userService.getUserInfoByUsername(username);
@@ -125,7 +120,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @PostMapping("/user/stu_info")
     public DefaultResponseBean addStudentInfo(@RequestBody RequestStudentInfo requestStudentInfo){
         try {
@@ -137,7 +131,6 @@ public class AdminController {
     }
 
 
-    @RequiresRoles("admin")
     @PutMapping("/institute")
     public DefaultResponseBean updateInstitute(@RequestBody @Valid Institute institute, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -148,14 +141,12 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @GetMapping("/institute")
     public DefaultResponseBean getAllInstitutes(){
         List<Institute> institutes = adminService.getAllInstitute();
         return new DefaultResponseBean("获取成功",institutes,1);
     }
 
-    @RequiresRoles("admin")
     @PostMapping("/institute")
     public DefaultResponseBean addInstitute(@RequestBody @Valid Institute institute, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -166,7 +157,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @DeleteMapping("/institute/{id}")
     public DefaultResponseBean deleteInstitute(@PathVariable String id) {
         try {
@@ -178,7 +168,6 @@ public class AdminController {
     }
 
 
-    @RequiresRoles("admin")
     @PutMapping("/major")
     public DefaultResponseBean updateMajor(@RequestBody @Valid Major major, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -189,14 +178,12 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @GetMapping("/major/{page}")
     public DefaultResponseBean getAllMajors(@PathVariable int page){
         List<Major> majors = adminService.getAllMajor(page,10);
         return new DefaultResponseBean("获取成功",majors,1);
     }
 
-    @RequiresRoles("admin")
     @PostMapping("/major")
     public DefaultResponseBean addMajor(@RequestBody @Valid Major major, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -207,7 +194,6 @@ public class AdminController {
         }
     }
 
-    @RequiresRoles("admin")
     @DeleteMapping("/major/{id}")
     public DefaultResponseBean deleteMajor(@PathVariable String id) {
         try {

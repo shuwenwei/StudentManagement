@@ -22,6 +22,7 @@ import java.util.List;
 
 
 @RestController
+@RequiresRoles("instructor")
 public class InstructorController {
 
     private InstructorService instructorService;
@@ -38,7 +39,6 @@ public class InstructorController {
     }
 
     @GetMapping("/instructor/clazz")
-    @RequiresRoles("instructor")
     public DefaultResponseBean getClazz(){
         String username = SecurityUtils.getSubject().getPrincipal().toString();
         List<Clazz> clazzList = instructorService.getAllClazz(username);
@@ -46,7 +46,6 @@ public class InstructorController {
     }
 
     @PutMapping("/instructor/student/info")
-    @RequiresRoles("instructor")
     public DefaultResponseBean updateStudentUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()){
 //            String message = bindingResult.getFieldError().getDefaultMessage();
@@ -68,7 +67,6 @@ public class InstructorController {
         }
     }
 
-    @RequiresRoles("instructor")
     @GetMapping("/instructor/student/info/{username}")
     public DefaultResponseBean getStudentUserInfo(@PathVariable String username){
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
@@ -84,7 +82,6 @@ public class InstructorController {
         }
     }
 
-    @RequiresRoles("instructor")
     @PutMapping("/instructor/student/family/{studentUsername}")
     public DefaultResponseBean updateStudentFamily(@PathVariable String studentUsername, @RequestBody @Valid FamilyMember familyMember,BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()){
