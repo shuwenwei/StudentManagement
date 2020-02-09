@@ -51,10 +51,6 @@ public class AdminController {
 
     @PostMapping("/user")
     public DefaultResponseBean addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
         user.setPassword(PasswordUtils.generate(user.getPassword()));
         try {
@@ -67,10 +63,6 @@ public class AdminController {
 
     @PutMapping("/user")
     public DefaultResponseBean updateUser(@RequestBody @Valid User user, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
         if (user.getPassword() != null) {
             user.setPassword(PasswordUtils.generate(user.getPassword()));
@@ -84,10 +76,6 @@ public class AdminController {
 
     @PutMapping("/user/info")
     public DefaultResponseBean updateUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
         if (instructorService.updateStudentInfo(userInfo)) {
             return new DefaultResponseBean("修改成功",null,1);
@@ -98,10 +86,6 @@ public class AdminController {
 
     @PutMapping("/family")
     public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
         if (instructorService.updateStudentFamilyInfo(familyMember)) {
             return new DefaultResponseBean("修改成功",null,1);

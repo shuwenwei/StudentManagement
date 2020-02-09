@@ -47,10 +47,6 @@ public class InstructorController {
 
     @PutMapping("/instructor/student/info")
     public DefaultResponseBean updateStudentUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()){
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
 //        该辅导员的username
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
@@ -84,10 +80,6 @@ public class InstructorController {
 
     @PutMapping("/instructor/student/family/{studentUsername}")
     public DefaultResponseBean updateStudentFamily(@PathVariable String studentUsername, @RequestBody @Valid FamilyMember familyMember,BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()){
-//            String message = bindingResult.getFieldError().getDefaultMessage();
-//            throw new IllegalPropertyException(message);
-//        }
         CheckBindingUtil.checkBinding(bindingResult);
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
         String result = instructorService.getStudentInstructor(studentUsername);
