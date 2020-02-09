@@ -44,6 +44,8 @@
         (#{username}, #{classId},#{majorId},#{instituteId},#{instructorId})
     </insert>
 
+
+
     <select id="getAllInstitute" resultType="institute">
         select * from institute
     </select>
@@ -63,5 +65,36 @@
         (#{id},#{name})
     </insert>
 
+    <delete id="deleteInstitute" parameterType="String">
+        delete from institute
+        where id = #{id}
+    </delete>
+
+
+
+    <select id="getAllMajor" resultType="major">
+        select * from major
+    </select>
+
+    <update id="updateMajor" parameterType="String">
+        update major
+        <set>
+            <if test="name != null and name.length() > 0">name = #{name}</if>
+            <if test="instituteId != null and instituteId.length() > 0">ins_id = #{instituteId}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="addMajor" parameterType="major">
+        insert into major
+        (id,name,ins_id)
+        values
+        (#{id},#{name},#{instituteId})
+    </insert>
+
+    <delete id="deleteMajor" parameterType="String">
+        delete from major
+        where id = #{id}
+    </delete>
 
 </mapper>

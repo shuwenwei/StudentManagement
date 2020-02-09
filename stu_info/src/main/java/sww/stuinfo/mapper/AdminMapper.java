@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import sww.stuinfo.pojo.Institute;
+import sww.stuinfo.pojo.Major;
 import sww.stuinfo.pojo.RequestStudentInfo;
 import sww.stuinfo.pojo.User;
 
@@ -30,5 +31,11 @@ public interface AdminMapper {
 
     boolean deleteInstitute(String id);
 
-    
+    List<Major> getAllMajor();
+
+    boolean updateMajor(Major major);
+
+    boolean addMajor(Major major);
+
+    boolean deleteMajor(String id);
 }

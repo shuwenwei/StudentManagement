@@ -1,9 +1,11 @@
 package sww.stuinfo.service;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sww.stuinfo.mapper.AdminMapper;
 import sww.stuinfo.pojo.Institute;
+import sww.stuinfo.pojo.Major;
 import sww.stuinfo.pojo.RequestStudentInfo;
 import sww.stuinfo.pojo.User;
 
@@ -53,6 +55,27 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean deleteInstitute(String id) {
         return adminMapper.deleteInstitute(id);
+    }
+
+    @Override
+    public List<Major> getAllMajor(int pageNumber, int pageSize) {
+        PageHelper.startPage(pageNumber,pageSize);
+        return adminMapper.getAllMajor();
+    }
+
+    @Override
+    public boolean updateMajor(Major major) {
+        return adminMapper.updateMajor(major);
+    }
+
+    @Override
+    public boolean addMajor(Major major) {
+        return adminMapper.addMajor(major);
+    }
+
+    @Override
+    public boolean deleteMajor(String id) {
+        return adminMapper.deleteMajor(id);
     }
 
 }

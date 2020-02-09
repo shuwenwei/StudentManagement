@@ -5,10 +5,7 @@ import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sww.stuinfo.exception.IllegalPropertyException;
-import sww.stuinfo.exception.InvalidFieldException;
-import sww.stuinfo.exception.UserNotExistException;
-import sww.stuinfo.exception.UsernameExistException;
+import sww.stuinfo.exception.*;
 import sww.stuinfo.pojo.*;
 import sww.stuinfo.service.AdminService;
 import sww.stuinfo.service.InstructorService;
@@ -175,7 +172,48 @@ public class AdminController {
         try {
             adminService.deleteInstitute(id);
         }catch (Exception e){
+            throw new DeleteFailedException("无法删除非空的学院");
+        }
+        return new DefaultResponseBean("删除成功", null, 1);
+    }
+
+
+    @RequiresRoles("admin")
+    @PutMapping("/major")
+    public DefaultResponseBean updateMajor(@RequestBody @Valid Major major, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (adminService.updateMajor(major)) {
+            return new DefaultResponseBean("修改成功",null,1);
+        }else {
             throw new InvalidFieldException();
+        }
+    }
+
+    @RequiresRoles("admin")
+    @GetMapping("/major/{page}")
+    public DefaultResponseBean getAllMajors(@PathVariable int page){
+        List<Major> majors = adminService.getAllMajor(page,10);
+        return new DefaultResponseBean("获取成功",majors,1);
+    }
+
+    @RequiresRoles("admin")
+    @PostMapping("/major")
+    public DefaultResponseBean addMajor(@RequestBody @Valid Major major, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (adminService.addMajor(major)) {
+            return new DefaultResponseBean("添加成功", null, 1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
+
+    @RequiresRoles("admin")
+    @DeleteMapping("/major/{id}")
+    public DefaultResponseBean deleteMajor(@PathVariable String id) {
+        try {
+            adminService.deleteMajor(id);
+        }catch (Exception e){
+            throw new DeleteFailedException("无法删除非空的专业");
         }
         return new DefaultResponseBean("删除成功", null, 1);
     }

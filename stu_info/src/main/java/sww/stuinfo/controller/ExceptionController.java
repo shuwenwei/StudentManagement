@@ -51,4 +51,9 @@ public class ExceptionController {
         return new DefaultResponseBean("用户名已存在",null,0);
     }
 
+    @ExceptionHandler(value = DeleteFailedException.class)
+    public DefaultResponseBean deleteFailed(DeleteFailedException exception){
+        return new DefaultResponseBean("无法删除",exception.getExceptionMessage(),0);
+    }
+
 }

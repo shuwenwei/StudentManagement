@@ -1,6 +1,7 @@
 package sww.stuinfo.service;
 
 import sww.stuinfo.pojo.Institute;
+import sww.stuinfo.pojo.Major;
 import sww.stuinfo.pojo.RequestStudentInfo;
 import sww.stuinfo.pojo.User;
 
@@ -24,4 +25,11 @@ public interface AdminService {
 
     boolean deleteInstitute(String id);
 
+    List<Major> getAllMajor(int pageNumber, int pageSize);
+
+    boolean updateMajor(Major major);
+
+    boolean addMajor(Major major);
+
+    boolean deleteMajor(String id);
 }
