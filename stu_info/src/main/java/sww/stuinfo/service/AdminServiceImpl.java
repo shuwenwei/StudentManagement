@@ -3,8 +3,11 @@ package sww.stuinfo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sww.stuinfo.mapper.AdminMapper;
+import sww.stuinfo.pojo.Institute;
 import sww.stuinfo.pojo.RequestStudentInfo;
 import sww.stuinfo.pojo.User;
+
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -30,6 +33,26 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean addStudentInfo(RequestStudentInfo requestStudentInfo) {
         return adminMapper.addStudentInfo(requestStudentInfo);
+    }
+
+    @Override
+    public List<Institute> getAllInstitute() {
+        return adminMapper.getAllInstitute();
+    }
+
+    @Override
+    public boolean updateInstitute(Institute institute) {
+        return adminMapper.updateInstitute(institute);
+    }
+
+    @Override
+    public boolean addInstitute(Institute institute) {
+        return adminMapper.addInstitute(institute);
+    }
+
+    @Override
+    public boolean deleteInstitute(String id) {
+        return adminMapper.deleteInstitute(id);
     }
 
 }

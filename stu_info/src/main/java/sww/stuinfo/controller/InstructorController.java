@@ -15,6 +15,7 @@ import sww.stuinfo.pojo.FamilyMember;
 import sww.stuinfo.pojo.UserInfo;
 import sww.stuinfo.service.InstructorService;
 import sww.stuinfo.service.UserService;
+import sww.stuinfo.utils.CheckBindingUtil;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -47,10 +48,11 @@ public class InstructorController {
     @PutMapping("/instructor/student/info")
     @RequiresRoles("instructor")
     public DefaultResponseBean updateStudentUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            String message = bindingResult.getFieldError().getDefaultMessage();
-            throw new IllegalPropertyException(message);
-        }
+//        if (bindingResult.hasErrors()){
+//            String message = bindingResult.getFieldError().getDefaultMessage();
+//            throw new IllegalPropertyException(message);
+//        }
+        CheckBindingUtil.checkBinding(bindingResult);
 //        该辅导员的username
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
 //        该学生的辅导员username
@@ -85,10 +87,11 @@ public class InstructorController {
     @RequiresRoles("instructor")
     @PutMapping("/instructor/student/family/{studentUsername}")
     public DefaultResponseBean updateStudentFamily(@PathVariable String studentUsername, @RequestBody @Valid FamilyMember familyMember,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            String message = bindingResult.getFieldError().getDefaultMessage();
-            throw new IllegalPropertyException(message);
-        }
+//        if (bindingResult.hasErrors()){
+//            String message = bindingResult.getFieldError().getDefaultMessage();
+//            throw new IllegalPropertyException(message);
+//        }
+        CheckBindingUtil.checkBinding(bindingResult);
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
         String result = instructorService.getStudentInstructor(studentUsername);
         if (instructorUsername.equals(result)){

@@ -101,4 +101,13 @@ class StuInfoApplicationTests {
         info.setInstructorId("6104119053");
         adminService.addStudentInfo(info);
     }
+
+    @Test
+    public void test10(){
+        Institute institute = new Institute();
+        institute.setId("1");
+        institute.setName("信息工程学院1");
+        boolean flag = adminService.updateInstitute(institute);
+        System.out.println(flag);
+    }
 }

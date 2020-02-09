@@ -3,8 +3,11 @@ package sww.stuinfo.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import sww.stuinfo.pojo.Institute;
 import sww.stuinfo.pojo.RequestStudentInfo;
 import sww.stuinfo.pojo.User;
+
+import java.util.List;
 
 
 @Mapper
@@ -19,4 +22,13 @@ public interface AdminMapper {
 
     boolean addStudentInfo(RequestStudentInfo requestStudentInfo);
 
+    List<Institute> getAllInstitute();
+
+    boolean updateInstitute(Institute institute);
+
+    boolean addInstitute(Institute institute);
+
+    boolean deleteInstitute(String id);
+
+    
 }

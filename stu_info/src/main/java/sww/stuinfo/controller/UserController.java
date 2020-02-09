@@ -3,19 +3,18 @@ package sww.stuinfo.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sww.stuinfo.exception.InvalidTokenException;
 import sww.stuinfo.exception.LoginFailedException;
 import sww.stuinfo.exception.UserNotExistException;
-import sww.stuinfo.pojo.DefaultResponseBean;
-import sww.stuinfo.pojo.StudentInfo;
-import sww.stuinfo.pojo.User;
-import sww.stuinfo.pojo.UserInfo;
+import sww.stuinfo.pojo.*;
 import sww.stuinfo.service.StudentService;
 import sww.stuinfo.service.UserService;
+import sww.stuinfo.utils.CheckBindingUtil;
 import sww.stuinfo.utils.JWTUtils;
 import sww.stuinfo.utils.PasswordUtils;
 
+import javax.validation.Valid;
 import java.util.List;
 
 

@@ -50,4 +50,5 @@ public class ExceptionController {
     public DefaultResponseBean usernameExist(UsernameExistException exception){
         return new DefaultResponseBean("用户名已存在",null,0);
     }
+
 }

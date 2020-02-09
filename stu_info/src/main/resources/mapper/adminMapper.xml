@@ -44,4 +44,24 @@
         (#{username}, #{classId},#{majorId},#{instituteId},#{instructorId})
     </insert>
 
+    <select id="getAllInstitute" resultType="institute">
+        select * from institute
+    </select>
+
+    <update id="updateInstitute" parameterType="String">
+        update institute
+        <set>
+            name = #{name}
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="addInstitute" parameterType="institute">
+        insert into institute
+        (id,name)
+        values
+        (#{id},#{name})
+    </insert>
+
+
 </mapper>
