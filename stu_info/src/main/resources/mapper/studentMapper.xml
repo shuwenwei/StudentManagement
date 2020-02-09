@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sww.stuinfo.mapper.StudentMapper">
+
+    <resultMap id="stuInfo" type="studentInfo">
+        <association property="instructor" javaType="userInfo" column="instructor" select="getInstructorInfo"/>
+    </resultMap>
+
+    <select id="getStudentInfo" resultMap="stuInfo">
+        select number,grade,m.name major,i.name institute,c.instructor,si.id username
+        from stu_info si
+        inner join major m on m.id = si.maj_id
+        inner join institute i on i.id = si.ins_id
+        inner join class c on c.id = si.cls_id
+        where si.id = #{username}
+    </select>
+
+    <select id="getInstructorInfo" resultType="userInfo">
+        select id username,name,sex,qq,telephone,we_chat weChat
+        from user_info
+        where id = #{instructor_id}
+    </select>
+
+
+
+    <select id="getClassmates" resultType="userInfo">
+        select si.id username,ui.name,ui.sex,ui.qq,ui.we_chat weChat,ui.telephone
+        from stu_info si
+        inner join user_info ui
+        on ui.id = si.id
+        where si.cls_id = (select cls_id from stu_info where id=#{username});
+    </select>
+
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sww.stuinfo.mapper.UserMapper">
+
+    <resultMap id="userInfoResultMap" type="userInfo">
+        <result property="username" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="qq" column="qq"/>
+        <result property="telephone" column="telephone"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="address" column="address"/>
+        <result property="weChat" column="we_chat"/>
+        <result property="idCard" column="id_card"/>
+        <collection property="familyMembers" ofType="familyMember">
+            <result property="id" column="f_id"/>
+            <result property="name" column="f_name"/>
+            <result property="relation" column="relation"/>
+            <result property="job" column="job"/>
+            <result property="studentUsername" column="id"/>
+            <result property="telephone" column="f_telephone"/>
+        </collection>
+    </resultMap>
+
+    <select id="getUserByUsername" parameterType="String" resultType="user">
+        select id username,password,role
+        from user
+        where id = #{username}
+    </select>
+
+    <select id="getUserInfoByUsername" parameterType="String" resultMap="userInfoResultMap">
+        select u.* ,f.id f_id, f.name f_name , f.telephone f_telephone , f.job job ,f.relation relation
+        from user_info u,family_member f
+        where u.id = #{username}
+        and u.id = f.user_id
+    </select>
+
+</mapper>

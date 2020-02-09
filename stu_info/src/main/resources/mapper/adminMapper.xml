@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sww.stuinfo.mapper.AdminMapper">
+
+    <delete id="deleteUser" parameterType="String">
+        delete from user where id = #{username}
+    </delete>
+
+    <insert id="addUser" parameterType="user">
+        insert into user
+        <choose>
+            <when test="role == 'instructor' or role == 'admin'">
+                (id,password,role)
+                values
+                (#{username}, #{password}, #{role})
+            </when>
+            <otherwise>
+                (id,password)
+                values
+                (#{username}, #{password})
+            </otherwise>
+        </choose>
+    </insert>
+
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="password != null and password.length() > 0">
+                password = #{password},
+            </if>
+            <if test="role == 'stu' or role == 'instructor' or role == 'admin'">
+                role = #{role},
+            </if>
+        </set>
+        where id = #{username}
+    </update>
+
+    <insert id="addStudentInfo">
+        insert into stu_info
+        (id,cls_id,maj_id,ins_id,instructor)
+        values
+        (#{username}, #{classId},#{majorId},#{instituteId},#{instructorId})
+    </insert>
+
+</mapper>

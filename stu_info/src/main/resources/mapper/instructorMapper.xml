@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sww.stuinfo.mapper.InstructorMapper">
+
+    <select id="getStudentInstructor" resultType="String">
+        select instructor from stu_info where id = #{username}
+    </select>
+
+    <select id="getAllClazz" resultType="clazz">
+        select c.id,c.number number,count(si.id) studentNumber,c.grade grade
+        from stu_info si
+        join class c
+        on c.id = si.cls_id
+        where si.instructor="6104119053"
+        group by cls_id;
+    </select>
+
+    <update id="updateStudentInfo" parameterType="userInfo">
+        update user_info
+        <set>
+            <if test="name != null and name.length() > 0">name = #{name},</if>
+            <if test="sex == '男' or sex =='女' ">sex = #{sex},</if>
+            <if test="telephone != null and telephone.length() > 0">telephone = #{telephone},</if>
+            <if test="qq != null and qq.length() > 0">qq = #{qq},</if>
+            <if test="weChat != null and weChat.length() > 0">we_chat = #{weChat},</if>
+            <if test="idCard != null and idCard.length() > 0">id_card = #{idCard},</if>
+            <if test="province != null and province.length() > 0">province = #{province},</if>
+            <if test="city != null and city.length() > 0">city = #{city},</if>
+            <if test="address != null and address.length() > 0">address = #{address}</if>
+        </set>
+        where id = #{username}
+    </update>
+
+    <update id="updateStudentFamilyInfo" parameterType="familyMember">
+        update family_member
+        <set>
+            <if test="name != null and name.length() > 0">name = #{name}</if>
+            <if test="job != null and job.length() > 0">job = #{job}</if>
+            <if test="relation != null and relation.length() > 0">relation = #{relation}</if>
+            <if test="telephone != null and telephone.length() > 0">telephone = #{telephone}</if>
+            <if test="studentUsername != null and studentUsername.length() > 0">studentUsername = #{studentUsername}</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
