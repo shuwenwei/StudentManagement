@@ -9,11 +9,11 @@
     </select>
 
     <select id="getAllClazz" resultType="clazz">
-        select c.id,c.number number,count(si.id) studentNumber,c.grade grade
+        select c.id,c.number number,count(si.id) studentNumber,c.grade grade,c.maj_id major
         from stu_info si
         join class c
         on c.id = si.cls_id
-        where si.instructor="6104119053"
+        where si.instructor=#{username}
         group by cls_id;
     </select>
 

@@ -4,10 +4,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sww.stuinfo.mapper.AdminMapper;
-import sww.stuinfo.pojo.Institute;
-import sww.stuinfo.pojo.Major;
-import sww.stuinfo.pojo.RequestStudentInfo;
-import sww.stuinfo.pojo.User;
+import sww.stuinfo.pojo.*;
 
 import java.util.List;
 
@@ -76,6 +73,27 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean deleteMajor(String id) {
         return adminMapper.deleteMajor(id);
+    }
+
+    @Override
+    public List<Clazz> getAllClazz(int pageNumber, int pageSize) {
+        PageHelper.startPage(pageNumber,pageSize);
+        return adminMapper.getAllClazz();
+    }
+
+    @Override
+    public boolean updateClazz(Clazz clazz) {
+        return adminMapper.updateClazz(clazz);
+    }
+
+    @Override
+    public boolean addClazz(Clazz clazz) {
+        return adminMapper.addClazz(clazz);
+    }
+
+    @Override
+    public boolean deleteClazz(String id) {
+        return adminMapper.deleteClazz(id);
     }
 
 }

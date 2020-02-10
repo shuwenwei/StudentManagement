@@ -1,9 +1,6 @@
 package sww.stuinfo.service;
 
-import sww.stuinfo.pojo.Institute;
-import sww.stuinfo.pojo.Major;
-import sww.stuinfo.pojo.RequestStudentInfo;
-import sww.stuinfo.pojo.User;
+import sww.stuinfo.pojo.*;
 
 import java.util.List;
 
@@ -32,4 +29,12 @@ public interface AdminService {
     boolean addMajor(Major major);
 
     boolean deleteMajor(String id);
+
+    List<Clazz> getAllClazz(int pageNumber, int pageSize);
+
+    boolean updateClazz(Clazz clazz);
+
+    boolean addClazz(Clazz clazz);
+
+    boolean deleteClazz(String id);
 }

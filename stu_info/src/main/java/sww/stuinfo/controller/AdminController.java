@@ -188,5 +188,15 @@ public class AdminController {
         return new DefaultResponseBean("删除成功", null, 1);
     }
 
+    @GetMapping("/class/{pageNumber}")
+    public DefaultResponseBean getAllClazz(@PathVariable int pageNumber) {
+        List<Clazz> pageClazz = adminService.getAllClazz(pageNumber, 10);
+        return new DefaultResponseBean("获取成功",pageClazz,1);
+    }
 
+//    @PutMapping("/class")
+//    public DefaultResponseBean updateClazz(@RequestBody @Valid Clazz clazz, BindingResult bindingResult) {
+//        CheckBindingUtil.checkBinding(bindingResult);
+//
+//    }
 }

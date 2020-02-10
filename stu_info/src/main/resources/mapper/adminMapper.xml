@@ -97,4 +97,12 @@
         where id = #{id}
     </delete>
 
+    <select id="getAllClazz" parameterType="clazz">
+        select class.id id, number, major.name , ui.name instructor
+        from class
+        inner join user_info ui
+        on class.instructor = ui.id
+        inner join major
+        on major.id = class.maj_id
+    </select>
 </mapper>
