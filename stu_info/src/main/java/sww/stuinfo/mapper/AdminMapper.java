@@ -43,4 +43,6 @@ public interface AdminMapper {
     boolean addClazz(Clazz clazz);
 
     boolean deleteClazz(String id);
+
+    Clazz findClazzById(String id);
 }

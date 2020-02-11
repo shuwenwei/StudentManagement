@@ -79,7 +79,7 @@
     <update id="updateMajor" parameterType="String">
         update major
         <set>
-            <if test="name != null and name.length() > 0">name = #{name}</if>
+            <if test="name != null and name.length() > 0">name = #{name},</if>
             <if test="instituteId != null and instituteId.length() > 0">ins_id = #{instituteId}</if>
         </set>
         where id = #{id}
@@ -97,12 +97,49 @@
         where id = #{id}
     </delete>
 
-    <select id="getAllClazz" parameterType="clazz">
-        select class.id id, number, major.name , ui.name instructor
+
+    <sql id="clazzSql">
+        select class.id id, number, major.name major, ui.name instructor, grade, count(si.cls_id) studentNumber
         from class
-        inner join user_info ui
+        left join user_info ui
         on class.instructor = ui.id
-        inner join major
+        left join major
         on major.id = class.maj_id
+        left join stu_info si
+        on si.cls_id = class.id
+    </sql>
+
+    <select id="getAllClazz" resultType="clazz">
+        <include refid="clazzSql"/>
+        group by class.id
     </select>
+
+    <select id="findClazzById" resultType="clazz">
+        <include refid="clazzSql"/>
+        where class.id = #{id}
+    </select>
+
+    <update id="updateClazz">
+        update class
+        <set>
+            <if test="major!=null and major.length()>0 ">maj_id = #{major},</if>
+            <if test="number!=null and number.length()>0">number = #{number},</if>
+            <if test="instructor!=null and instructor.length()>0">instructor = #{instructor},</if>
+            <if test="grade!=null and grade.length()>0">grade = #{grade}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="addClazz" parameterType="clazz">
+        insert into class
+        (id,number,maj_id,grade,instructor)
+        values
+        (#{id},#{number},#{major},#{grade},#{instructor})
+    </insert>
+
+    <delete id="deleteClazz">
+        delete from class
+        where id = #{id}
+    </delete>
+    
 </mapper>

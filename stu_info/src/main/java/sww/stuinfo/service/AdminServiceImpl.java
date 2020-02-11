@@ -96,4 +96,9 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.deleteClazz(id);
     }
 
+    @Override
+    public Clazz findClazzById(String id) {
+        return adminMapper.findClazzById(id);
+    }
+
 }

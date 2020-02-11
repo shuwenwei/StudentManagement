@@ -110,4 +110,12 @@ class StuInfoApplicationTests {
         boolean flag = adminService.updateInstitute(institute);
         System.out.println(flag);
     }
+
+    @Test
+    void test11(){
+        List<Clazz> allClazz = adminService.getAllClazz(1, 5);
+        for (Clazz clazz : allClazz) {
+            System.out.println(clazz);
+        }
+    }
 }
