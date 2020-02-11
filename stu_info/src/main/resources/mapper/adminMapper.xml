@@ -141,5 +141,5 @@
         delete from class
         where id = #{id}
     </delete>
-    
+
 </mapper>

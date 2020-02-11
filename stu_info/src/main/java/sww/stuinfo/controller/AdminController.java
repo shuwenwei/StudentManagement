@@ -194,9 +194,35 @@ public class AdminController {
         return new DefaultResponseBean("获取成功",pageClazz,1);
     }
 
-//    @PutMapping("/class")
-//    public DefaultResponseBean updateClazz(@RequestBody @Valid Clazz clazz, BindingResult bindingResult) {
-//        CheckBindingUtil.checkBinding(bindingResult);
-//
-//    }
+    @PutMapping("/class")
+    public DefaultResponseBean updateClazz(@RequestBody @Valid Clazz clazz, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (adminService.updateClazz(clazz)) {
+            return new DefaultResponseBean("更新成功",null,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
+
+    @PostMapping("/class")
+    public DefaultResponseBean addClazz(@RequestBody @Valid Clazz clazz, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        try {
+            adminService.addClazz(clazz);
+        }catch (RuntimeException e) {
+            throw new InvalidFieldException();
+        }
+        return new DefaultResponseBean("添加成功",null,1);
+    }
+
+    @DeleteMapping("/class/{id}")
+    public DefaultResponseBean deleteClazz(@PathVariable String id) {
+        if (adminService.deleteClazz(id)) {
+            return new DefaultResponseBean("删除成功",null,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
+
+
 }
