@@ -76,6 +76,11 @@
         select * from major
     </select>
 
+    <select id="getMajor" resultType="major">
+        select * from major
+        where id = #{id}
+    </select>
+
     <update id="updateMajor" parameterType="String">
         update major
         <set>
@@ -99,7 +104,7 @@
 
 
     <sql id="clazzSql">
-        select class.id id, number, major.name major, ui.name instructor, grade, count(si.cls_id) studentNumber
+        select class.id id, number, major.name major, ui.name instructor, grade, count(si.cls_id) studentNumber,major.id majorId
         from class
         left join user_info ui
         on class.instructor = ui.id
@@ -147,4 +152,19 @@
         where id = #{id}
     </delete>
 
+    <update id="updateStudentInfo" parameterType="requestStudentInfo">
+        update stu_info
+        <set>
+            <if test="classId!=null and classId.length()>0">cls_id = #{classId},</if>
+            <if test="instructorId!=null and instructorId.length()>0">instructor = #{instructorId},</if>
+            <if test="instituteId!=null and instituteId">ins_id = #{instituteId}</if>
+            <if test="majorId!=null and majorId.length()>0">maj_id = #{majorId}</if>
+        </set>
+        where id = #{username}
+    </update>
+
+    <delete id="deleteStudentInfo" parameterType="String">
+        delete from stu_info
+        where id = #{id}
+    </delete>
 </mapper>

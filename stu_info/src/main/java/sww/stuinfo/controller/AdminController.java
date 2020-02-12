@@ -1,5 +1,6 @@
 package sww.stuinfo.controller;
 
+import com.alibaba.druid.sql.visitor.functions.Bin;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -231,7 +232,7 @@ public class AdminController {
         }
     }
 
-    
+
 
     @GetMapping("/admin/student/{id}")
     public DefaultResponseBean findStudentInfoById(@PathVariable String id) {
@@ -239,8 +240,9 @@ public class AdminController {
         return new DefaultResponseBean("获取成功",studentInfo,1);
     }
 
-    @PostMapping("/user/stu_info")
-    public DefaultResponseBean addStudentInfo(@RequestBody RequestStudentInfo requestStudentInfo){
+    @PostMapping("/admin/student")
+    public DefaultResponseBean addStudentInfo(@RequestBody RequestStudentInfo requestStudentInfo, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
         try {
             adminService.addStudentInfo(requestStudentInfo);
         }catch (Exception e){
@@ -249,7 +251,25 @@ public class AdminController {
         return new DefaultResponseBean("添加成功",null,1);
     }
 
+    @PutMapping("/admin/student")
+    public DefaultResponseBean updateStudentInfo(@RequestBody @Valid RequestStudentInfo requestStudentInfo, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (adminService.updateStudentInfo(requestStudentInfo)) {
+            return new DefaultResponseBean("修改成功",null,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
 
+    @DeleteMapping("/admin/student/{id}")
+    public DefaultResponseBean deleteStudentInfo(@PathVariable String id) {
+        if (adminService.deleteStudentInfo(id)) {
+            return new DefaultResponseBean("删除成功",null,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+    
     @PutMapping("/family")
     public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);

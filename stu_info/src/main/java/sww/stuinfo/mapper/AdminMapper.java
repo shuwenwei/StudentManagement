@@ -30,6 +30,8 @@ public interface AdminMapper {
 
     List<Major> getAllMajor();
 
+    Major getMajor(String id);
+
     boolean updateMajor(Major major);
 
     boolean addMajor(Major major);
@@ -47,4 +49,8 @@ public interface AdminMapper {
     Clazz findClazzById(String id);
 
     boolean deleteUserInfo(String id);
+
+    boolean updateStudentInfo(RequestStudentInfo requestStudentInfo);
+
+    boolean deleteStudentInfo(String id);
 }

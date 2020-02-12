@@ -31,6 +31,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean addStudentInfo(RequestStudentInfo requestStudentInfo) {
+        Clazz clazz = findClazzById(requestStudentInfo.getUsername());
+        requestStudentInfo.setInstructorId(clazz.getInstructor());
+        Major major = getMajor(clazz.getMajorId());
+        requestStudentInfo.setInstituteId(major.getInstituteId());
         return adminMapper.addStudentInfo(requestStudentInfo);
     }
 
@@ -58,6 +62,11 @@ public class AdminServiceImpl implements AdminService {
     public List<Major> getAllMajor(int pageNumber, int pageSize) {
         PageHelper.startPage(pageNumber,pageSize);
         return adminMapper.getAllMajor();
+    }
+
+    @Override
+    public Major getMajor(String id) {
+        return adminMapper.getMajor(id);
     }
 
     @Override
@@ -104,5 +113,19 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean deleteUserInfo(String id) {
         return adminMapper.deleteUserInfo(id);
+    }
+
+    @Override
+    public boolean updateStudentInfo(RequestStudentInfo requestStudentInfo) {
+        Clazz clazz = findClazzById(requestStudentInfo.getUsername());
+        requestStudentInfo.setInstructorId(clazz.getInstructor());
+        Major major = getMajor(clazz.getMajorId());
+        requestStudentInfo.setInstituteId(major.getInstituteId());
+        return adminMapper.updateStudentInfo(requestStudentInfo);
+    }
+
+    @Override
+    public boolean deleteStudentInfo(String id) {
+        return adminMapper.deleteStudentInfo(id);
     }
 }

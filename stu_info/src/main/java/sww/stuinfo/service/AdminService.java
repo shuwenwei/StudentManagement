@@ -24,6 +24,8 @@ public interface AdminService {
 
     List<Major> getAllMajor(int pageNumber, int pageSize);
 
+    Major getMajor(String id);
+
     boolean updateMajor(Major major);
 
     boolean addMajor(Major major);
@@ -42,4 +44,7 @@ public interface AdminService {
 
     boolean deleteUserInfo(String id);
 
+    boolean updateStudentInfo(RequestStudentInfo requestStudentInfo);
+
+    boolean deleteStudentInfo(String id);
 }

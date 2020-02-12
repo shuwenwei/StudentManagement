@@ -12,5 +12,6 @@ public class Clazz {
     private String grade;
     private String instructor;
     private String major;
+    private String majorId;
 
 }
