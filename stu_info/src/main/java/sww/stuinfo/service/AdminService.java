@@ -40,4 +40,6 @@ public interface AdminService {
 
     Clazz findClazzById(String id);
 
+    boolean deleteUserInfo(String id);
+
 }

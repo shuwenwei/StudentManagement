@@ -101,4 +101,8 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.findClazzById(id);
     }
 
+    @Override
+    public boolean deleteUserInfo(String id) {
+        return adminMapper.deleteUserInfo(id);
+    }
 }

@@ -1,7 +1,6 @@
 package sww.stuinfo.controller;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +8,7 @@ import sww.stuinfo.exception.*;
 import sww.stuinfo.pojo.*;
 import sww.stuinfo.service.AdminService;
 import sww.stuinfo.service.InstructorService;
+import sww.stuinfo.service.StudentService;
 import sww.stuinfo.service.UserService;
 import sww.stuinfo.utils.CheckBindingUtil;
 import sww.stuinfo.utils.PasswordUtils;
@@ -24,6 +24,7 @@ public class AdminController {
     private AdminService adminService;
     private InstructorService instructorService;
     private UserService userService;
+    private StudentService studentService;
 
     @Autowired
     public void setAdminService(AdminService adminService) {
@@ -40,79 +41,11 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @DeleteMapping("/user/{username}")
-    public DefaultResponseBean deleteUser(@PathVariable String username) {
-        if (adminService.deleteUser(username)) {
-            return new DefaultResponseBean("删除成功",null,1);
-        }else {
-            throw new UserNotExistException();
-        }
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @PostMapping("/user")
-    public DefaultResponseBean addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
-        CheckBindingUtil.checkBinding(bindingResult);
-        user.setPassword(PasswordUtils.generate(user.getPassword()));
-        try {
-            adminService.addUser(user);
-        }catch (Exception e){
-            throw new UsernameExistException();
-        }
-        return new DefaultResponseBean("添加成功",null,1);
-    }
-
-    @PutMapping("/user")
-    public DefaultResponseBean updateUser(@RequestBody @Valid User user, BindingResult bindingResult) {
-        CheckBindingUtil.checkBinding(bindingResult);
-        if (user.getPassword() != null) {
-            user.setPassword(PasswordUtils.generate(user.getPassword()));
-        }
-        if (adminService.updateUser(user)) {
-            return new DefaultResponseBean("修改成功",null,1);
-        }else {
-            throw new UserNotExistException();
-        }
-    }
-
-    @PutMapping("/user/info")
-    public DefaultResponseBean updateUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
-        CheckBindingUtil.checkBinding(bindingResult);
-        if (instructorService.updateStudentInfo(userInfo)) {
-            return new DefaultResponseBean("修改成功",null,1);
-        }else {
-            throw new InvalidFieldException();
-        }
-    }
-
-    @PutMapping("/family")
-    public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
-        CheckBindingUtil.checkBinding(bindingResult);
-        if (instructorService.updateStudentFamilyInfo(familyMember)) {
-            return new DefaultResponseBean("修改成功",null,1);
-        }else {
-            throw new InvalidFieldException();
-        }
-    }
-
-    @GetMapping("/user/info/{username}")
-    public DefaultResponseBean getUserInfo(@PathVariable String username){
-        UserInfo userInfo = userService.getUserInfoByUsername(username);
-        if (userInfo != null) {
-            return new DefaultResponseBean("获取成功",userInfo,1);
-        }else {
-            throw new UserNotExistException();
-        }
-    }
-
-    @PostMapping("/user/stu_info")
-    public DefaultResponseBean addStudentInfo(@RequestBody RequestStudentInfo requestStudentInfo){
-        try {
-            adminService.addStudentInfo(requestStudentInfo);
-        }catch (Exception e){
-            throw new InvalidFieldException();
-        }
-        return new DefaultResponseBean("添加成功",null,1);
-    }
 
 
     @PutMapping("/institute")
@@ -225,4 +158,105 @@ public class AdminController {
     }
 
 
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+    @DeleteMapping("/user/{username}")
+    public DefaultResponseBean deleteUser(@PathVariable String username) {
+        if (adminService.deleteUser(username)) {
+            return new DefaultResponseBean("删除成功",null,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+
+    @PostMapping("/user")
+    public DefaultResponseBean addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        user.setPassword(PasswordUtils.generate(user.getPassword()));
+        try {
+            adminService.addUser(user);
+        }catch (Exception e){
+            throw new UsernameExistException();
+        }
+        return new DefaultResponseBean("添加成功",null,1);
+    }
+
+    @PutMapping("/user")
+    public DefaultResponseBean updateUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (user.getPassword() != null) {
+            user.setPassword(PasswordUtils.generate(user.getPassword()));
+        }
+        if (adminService.updateUser(user)) {
+            return new DefaultResponseBean("修改成功",null,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+
+
+
+    @GetMapping("/admin/user/{id}")
+    public DefaultResponseBean findUserInfoById(@PathVariable String id) {
+        UserInfo userInfo = userService.getUserInfoByUsername(id);
+        return new DefaultResponseBean("获取成功",userInfo,1);
+    }
+
+    @PutMapping("/user/info")
+    public DefaultResponseBean updateUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (instructorService.updateStudentInfo(userInfo)) {
+            return new DefaultResponseBean("修改成功",null,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
+
+    @GetMapping("/user/info/{username}")
+    public DefaultResponseBean getUserInfo(@PathVariable String username){
+        UserInfo userInfo = userService.getUserInfoByUsername(username);
+        if (userInfo != null) {
+            return new DefaultResponseBean("获取成功",userInfo,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+
+    @DeleteMapping("/user/info/{id}")
+    public DefaultResponseBean deleteUserInfo(@PathVariable String id) {
+        if (adminService.deleteUserInfo(id)) {
+            return new DefaultResponseBean("删除成功",null,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+
+    
+
+    @GetMapping("/admin/student/{id}")
+    public DefaultResponseBean findStudentInfoById(@PathVariable String id) {
+        StudentInfo studentInfo = studentService.getStudentInfo(id);
+        return new DefaultResponseBean("获取成功",studentInfo,1);
+    }
+
+    @PostMapping("/user/stu_info")
+    public DefaultResponseBean addStudentInfo(@RequestBody RequestStudentInfo requestStudentInfo){
+        try {
+            adminService.addStudentInfo(requestStudentInfo);
+        }catch (Exception e){
+            throw new InvalidFieldException();
+        }
+        return new DefaultResponseBean("添加成功",null,1);
+    }
+
+
+    @PutMapping("/family")
+    public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        if (instructorService.updateStudentFamilyInfo(familyMember)) {
+            return new DefaultResponseBean("修改成功",null,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
 }

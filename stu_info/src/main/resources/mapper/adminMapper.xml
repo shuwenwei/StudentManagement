@@ -142,4 +142,9 @@
         where id = #{id}
     </delete>
 
+    <delete id="deleteUserInfo" parameterType="String">
+        delete from user_info
+        where id = #{id}
+    </delete>
+
 </mapper>
