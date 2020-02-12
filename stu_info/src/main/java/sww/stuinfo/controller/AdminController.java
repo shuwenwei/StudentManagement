@@ -269,7 +269,7 @@ public class AdminController {
             throw new UserNotExistException();
         }
     }
-    
+
     @PutMapping("/family")
     public DefaultResponseBean updateFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -279,4 +279,25 @@ public class AdminController {
             throw new InvalidFieldException();
         }
     }
+
+    @PostMapping("/family")
+    public DefaultResponseBean addFamilyMemberInfo(@RequestBody @Valid FamilyMember familyMember, BindingResult bindingResult) {
+        CheckBindingUtil.checkBinding(bindingResult);
+        try {
+            adminService.addFamilyMember(familyMember);
+        }catch (RuntimeException e) {
+            throw new InvalidFieldException();
+        }
+        return new DefaultResponseBean("添加成功",null,1);
+    }
+
+    @DeleteMapping("/family/{id}")
+    public DefaultResponseBean deleteFamilyMemberInfo(@PathVariable String id) {
+        if (adminService.deleteFamilyMember(id)) {
+            return new DefaultResponseBean("删除成功",null,1);
+        }else {
+            throw new DeleteFailedException("成员不存在");
+        }
+    }
+
 }

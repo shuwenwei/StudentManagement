@@ -47,4 +47,9 @@ public interface AdminService {
     boolean updateStudentInfo(RequestStudentInfo requestStudentInfo);
 
     boolean deleteStudentInfo(String id);
+
+    boolean addFamilyMember(FamilyMember familyMember);
+
+    boolean deleteFamilyMember(String id);
+
 }

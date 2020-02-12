@@ -128,4 +128,14 @@ public class AdminServiceImpl implements AdminService {
     public boolean deleteStudentInfo(String id) {
         return adminMapper.deleteStudentInfo(id);
     }
+
+    @Override
+    public boolean addFamilyMember(FamilyMember familyMember) {
+        return adminMapper.addFamilyMember(familyMember);
+    }
+
+    @Override
+    public boolean deleteFamilyMember(String id) {
+        return adminMapper.deleteFamilyMember(id);
+    }
 }

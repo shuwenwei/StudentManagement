@@ -157,7 +157,7 @@
         <set>
             <if test="classId!=null and classId.length()>0">cls_id = #{classId},</if>
             <if test="instructorId!=null and instructorId.length()>0">instructor = #{instructorId},</if>
-            <if test="instituteId!=null and instituteId">ins_id = #{instituteId}</if>
+            <if test="instituteId!=null and instituteId">ins_id = #{instituteId},</if>
             <if test="majorId!=null and majorId.length()>0">maj_id = #{majorId}</if>
         </set>
         where id = #{username}
@@ -167,4 +167,18 @@
         delete from stu_info
         where id = #{id}
     </delete>
+
+
+    <insert id="addFamilyMember" parameterType="familyMember">
+        insert into family_member
+        (id,user_id,name,relation,job,telephone)
+        values
+        (#{id},#{studentUsername},#{name},#{relation},#{job},#{telephone});
+    </insert>
+
+    <delete id="deleteFamilyMember" parameterType="String">
+        delete from family_member
+        where id = #{id}
+    </delete>
+
 </mapper>

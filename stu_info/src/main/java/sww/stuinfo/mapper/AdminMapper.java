@@ -53,4 +53,8 @@ public interface AdminMapper {
     boolean updateStudentInfo(RequestStudentInfo requestStudentInfo);
 
     boolean deleteStudentInfo(String id);
+
+    boolean addFamilyMember(FamilyMember familyMember);
+
+    boolean deleteFamilyMember(String id);
 }
