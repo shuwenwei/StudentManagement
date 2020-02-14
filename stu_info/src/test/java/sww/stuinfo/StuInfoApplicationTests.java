@@ -118,4 +118,12 @@ class StuInfoApplicationTests {
             System.out.println(clazz);
         }
     }
+
+    @Test
+    void test12(){
+        List<UserInfo> users = adminService.findUserByName("user");
+        for (UserInfo user : users) {
+            System.out.println(user);
+        }
+    }
 }

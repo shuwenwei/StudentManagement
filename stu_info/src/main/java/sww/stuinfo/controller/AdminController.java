@@ -309,4 +309,14 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/admin/userinfo")
+    public DefaultResponseBean findUserByName(@RequestParam String name, @RequestParam int page) {
+        List<UserInfo> users = adminService.findUserByName(name);
+        if (!users.isEmpty()) {
+            return new DefaultResponseBean("获取成功",null,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
+
 }

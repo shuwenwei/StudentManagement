@@ -143,4 +143,11 @@ public class AdminServiceImpl implements AdminService {
     public boolean deleteFamilyMember(String id) {
         return adminMapper.deleteFamilyMember(id);
     }
+
+    @Override
+    public List<UserInfo> findUserByName(String name) {
+        name = "%" + name + "%";
+        PageHelper.startPage(1,10);
+        return adminMapper.findUserByName(name);
+    }
 }

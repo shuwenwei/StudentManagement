@@ -18,6 +18,8 @@ public interface AdminMapper {
 
     boolean updateUser(User user);
 
+    List<UserInfo> findUserByName(String name);
+
     boolean addStudentInfo(RequestStudentInfo requestStudentInfo);
 
     List<Institute> getAllInstitute();

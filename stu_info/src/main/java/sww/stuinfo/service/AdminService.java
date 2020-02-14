@@ -54,4 +54,6 @@ public interface AdminService {
 
     boolean deleteFamilyMember(String id);
 
+    List<UserInfo> findUserByName(String name);
+
 }
