@@ -22,6 +22,8 @@ public interface AdminMapper {
 
     List<Institute> getAllInstitute();
 
+    Institute getInstitute(String id);
+
     boolean updateInstitute(Institute institute);
 
     boolean addInstitute(Institute institute);

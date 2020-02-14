@@ -44,6 +44,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Institute getInstitute(String id) {
+        return adminMapper.getInstitute(id);
+    }
+
+    @Override
     public boolean updateInstitute(Institute institute) {
         return adminMapper.updateInstitute(institute);
     }

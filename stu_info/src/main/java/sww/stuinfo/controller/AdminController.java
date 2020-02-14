@@ -48,6 +48,15 @@ public class AdminController {
     }
 
 
+    @GetMapping("/institute/{id}")
+    public DefaultResponseBean getInstitute(@PathVariable String id) {
+        Institute institute = adminService.getInstitute(id);
+        if (institute != null) {
+            return new DefaultResponseBean(" 获取成功",institute,1);
+        }else {
+            throw new InvalidFieldException();
+        }
+    }
 
     @PutMapping("/institute")
     public DefaultResponseBean updateInstitute(@RequestBody @Valid Institute institute, BindingResult bindingResult) {

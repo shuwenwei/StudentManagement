@@ -45,9 +45,17 @@
     </insert>
 
 
+    <sql id="selectInstitute">
+        select * from institute
+    </sql>
 
     <select id="getAllInstitute" resultType="institute">
-        select * from institute
+        <include refid="selectInstitute"/>
+    </select>
+
+    <select id="getInstitute" parameterType="String" resultType="institute">
+        <include refid="selectInstitute"/>
+        where id = #{id}
     </select>
 
     <update id="updateInstitute" parameterType="String">
