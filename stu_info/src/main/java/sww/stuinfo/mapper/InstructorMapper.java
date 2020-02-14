@@ -22,4 +22,5 @@ public interface InstructorMapper {
 
     String getStudentInstructor(@Param("username") String username);
 
+    List<UserInfo> findStudentByName(String name,String instructor);
 }

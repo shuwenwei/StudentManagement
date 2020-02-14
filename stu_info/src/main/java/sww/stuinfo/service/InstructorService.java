@@ -17,4 +17,6 @@ public interface InstructorService {
 
     String getStudentInstructor(String username);
 
+    List<UserInfo> findStudentByName(String name, String instructor, int page);
+
 }

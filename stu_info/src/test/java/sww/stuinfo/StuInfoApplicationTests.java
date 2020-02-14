@@ -126,4 +126,12 @@ class StuInfoApplicationTests {
             System.out.println(user);
         }
     }
+
+    @Test
+    void test13(){
+        List<UserInfo> students = instructorService.findStudentByName("use", "6104119053", 1);
+        for (UserInfo student : students) {
+            System.out.println(student);
+        }
+    }
 }

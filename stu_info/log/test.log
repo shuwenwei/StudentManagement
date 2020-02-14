@@ -1,6 +1,6 @@
-11:22:05.628 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Starting StuInfoApplicationTests on LAPTOP-8J4J4V32 with PID 7584 (started by hp in D:\新建文件夹 (2)\stu_info)
-11:22:05.628 [main] INFO  sww.stuinfo.StuInfoApplicationTests - No active profile set, falling back to default profiles: default
-11:22:08.013 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Started StuInfoApplicationTests in 2.616 seconds (JVM running for 4.223)
-11:22:08.544 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
-11:22:08.744 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
-11:22:08.744 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+11:37:07.775 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Starting StuInfoApplicationTests on LAPTOP-8J4J4V32 with PID 8672 (started by hp in D:\新建文件夹 (2)\stu_info)
+11:37:07.775 [main] INFO  sww.stuinfo.StuInfoApplicationTests - No active profile set, falling back to default profiles: default
+11:37:10.214 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Started StuInfoApplicationTests in 2.658 seconds (JVM running for 4.251)
+11:37:10.729 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+11:37:10.876 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+11:37:10.894 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

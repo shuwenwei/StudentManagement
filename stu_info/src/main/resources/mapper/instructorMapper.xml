@@ -44,4 +44,13 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="findStudentByName" resultType="UserInfo">
+        select ui.id username, ui.name name
+        from user_info ui
+        inner join stu_info si
+        on ui.id = si.id
+        where ui.name like #{name}
+        and si.instructor = #{instructor}
+    </select>
 </mapper>

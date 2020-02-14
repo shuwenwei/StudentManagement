@@ -94,4 +94,14 @@ public class InstructorController {
         }
     }
 
+    @GetMapping("instructor/student/info")
+    public DefaultResponseBean findUserByName(@RequestParam String name, @RequestParam int page) {
+        String instructor = SecurityUtils.getSubject().getPrincipal().toString();
+        List<UserInfo> students = instructorService.findStudentByName(name, instructor, page);
+        if (!students.isEmpty()) {
+            return new DefaultResponseBean("获取成功",students,1);
+        }else {
+            throw new UserNotExistException();
+        }
+    }
 }

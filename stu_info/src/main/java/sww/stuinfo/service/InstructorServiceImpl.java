@@ -1,5 +1,6 @@
 package sww.stuinfo.service;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sww.stuinfo.mapper.InstructorMapper;
@@ -36,5 +37,10 @@ public class InstructorServiceImpl implements InstructorService {
         return instructorMapper.getStudentInstructor(username);
     }
 
-
+    @Override
+    public List<UserInfo> findStudentByName(String name, String instructor, int page) {
+        name = "%" + name + "%";
+        PageHelper.startPage(1,10);
+        return instructorMapper.findStudentByName(name,instructor);
+    }
 }
