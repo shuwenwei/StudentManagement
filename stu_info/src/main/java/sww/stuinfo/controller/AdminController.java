@@ -1,6 +1,5 @@
 package sww.stuinfo.controller;
 
-import com.alibaba.druid.sql.visitor.functions.Bin;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

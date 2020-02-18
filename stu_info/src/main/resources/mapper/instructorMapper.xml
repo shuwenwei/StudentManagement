@@ -21,7 +21,7 @@
         update user_info
         <set>
             <if test="name != null and name.length() > 0">name = #{name},</if>
-            <if test="sex == '男' or sex =='女' ">sex = #{sex},</if>
+            <if test="sex == '男'.toString() or sex == '女'.toString() ">sex = #{sex},</if>
             <if test="telephone != null and telephone.length() > 0">telephone = #{telephone},</if>
             <if test="qq != null and qq.length() > 0">qq = #{qq},</if>
             <if test="weChat != null and weChat.length() > 0">we_chat = #{weChat},</if>
@@ -36,11 +36,11 @@
     <update id="updateStudentFamilyInfo" parameterType="familyMember">
         update family_member
         <set>
-            <if test="name != null and name.length() > 0">name = #{name}</if>
-            <if test="job != null and job.length() > 0">job = #{job}</if>
-            <if test="relation != null and relation.length() > 0">relation = #{relation}</if>
-            <if test="telephone != null and telephone.length() > 0">telephone = #{telephone}</if>
-            <if test="studentUsername != null and studentUsername.length() > 0">studentUsername = #{studentUsername}</if>
+            <if test="name != null and name.length() > 0">name = #{name},</if>
+            <if test="job != null and job.length() > 0">job = #{job},</if>
+            <if test="relation != null and relation.length() > 0">relation = #{relation},</if>
+            <if test="telephone != null and telephone.length() > 0">telephone = #{telephone},</if>
+            <if test="studentUsername != null and studentUsername.length() > 0">user_id = #{studentUsername},</if>
         </set>
         where id = #{id}
     </update>

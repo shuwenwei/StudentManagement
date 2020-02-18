@@ -6,7 +6,6 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sww.stuinfo.exception.IllegalPropertyException;
 import sww.stuinfo.exception.InvalidFieldException;
 import sww.stuinfo.exception.UserNotExistException;
 import sww.stuinfo.pojo.Clazz;
@@ -51,6 +50,7 @@ public class InstructorController {
 //        该辅导员的username
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
 //        该学生的辅导员username
+        System.out.println(userInfo.getSex());
         String result = instructorService.getStudentInstructor(userInfo.getUsername());
         if (instructorUsername.equals(result)){
             if (instructorService.updateStudentInfo(userInfo)) {
@@ -78,11 +78,11 @@ public class InstructorController {
         }
     }
 
-    @PutMapping("/instructor/student/family/{studentUsername}")
-    public DefaultResponseBean updateStudentFamily(@PathVariable String studentUsername, @RequestBody @Valid FamilyMember familyMember,BindingResult bindingResult) {
+    @PutMapping("/instructor/student/family")
+    public DefaultResponseBean updateStudentFamily(@RequestBody @Valid FamilyMember familyMember,BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
         String instructorUsername = SecurityUtils.getSubject().getPrincipal().toString();
-        String result = instructorService.getStudentInstructor(studentUsername);
+        String result = instructorService.getStudentInstructor(familyMember.getStudentUsername());
         if (instructorUsername.equals(result)){
             if (instructorService.updateStudentFamilyInfo(familyMember)) {
                 return new DefaultResponseBean("修改成功",null,1);
@@ -94,7 +94,7 @@ public class InstructorController {
         }
     }
 
-    @GetMapping("instructor/student/info")
+    @GetMapping("/instructor/student/info")
     public DefaultResponseBean findUserByName(@RequestParam String name, @RequestParam int page) {
         String instructor = SecurityUtils.getSubject().getPrincipal().toString();
         List<UserInfo> students = instructorService.findStudentByName(name, instructor, page);

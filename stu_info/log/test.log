@@ -1,6 +1,10 @@
-14:16:30.968 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Starting StuInfoApplicationTests on LAPTOP-8J4J4V32 with PID 11000 (started by hp in D:\ÐÂ½¨ÎÄ¼þ¼Ð (2)\stu_info)
-14:16:30.976 [main] INFO  sww.stuinfo.StuInfoApplicationTests - No active profile set, falling back to default profiles: default
-14:16:33.653 [main] INFO  sww.stuinfo.StuInfoApplicationTests - Started StuInfoApplicationTests in 2.924 seconds (JVM running for 4.434)
-14:16:34.345 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
-14:16:34.797 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
-14:16:34.803 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+21:15:29.412 [main] INFO  sww.stuinfo.StuInfoApplication - Starting StuInfoApplication on LAPTOP-8J4J4V32 with PID 13584 (started by hp in D:\æ–°å»ºæ–‡ä»¶å¤¹ (2)\stu_info)
+21:15:29.420 [main] INFO  sww.stuinfo.StuInfoApplication - No active profile set, falling back to default profiles: default
+21:15:30.588 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:15:30.589 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+21:15:30.589 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.30]
+21:15:30.645 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:15:30.999 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:15:31.021 [main] INFO  sww.stuinfo.StuInfoApplication - Started StuInfoApplication in 1.88 seconds (JVM running for 2.902)
+21:16:54.488 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:16:54.799 [http-nio-8080-exec-1] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited

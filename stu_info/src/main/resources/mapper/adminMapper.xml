@@ -24,7 +24,7 @@
         </choose>
     </insert>
 
-    <update id="updateUser">
+    <update id="updateUser" parameterType="user">
         update user
         <set>
             <if test="password != null and password.length() > 0">
