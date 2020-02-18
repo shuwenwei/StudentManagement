@@ -1,9 +1,12 @@
 package sww.stuinfo.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class Clazz {
 
     private String id;
