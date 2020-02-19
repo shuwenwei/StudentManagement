@@ -99,7 +99,7 @@ class StuInfoApplicationTests {
         info.setMajorId("1");
         info.setUsername("6104119057");
         info.setInstructorId("6104119053");
-        adminService.addStudentInfo(info);
+//        adminService.addStudentInfo(info);
     }
 
     @Test
