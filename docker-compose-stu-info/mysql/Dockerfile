@@ -11,5 +11,3 @@ COPY ./$MYSQL_FILE $WORK_PATH/
 COPY ./$INSTALL_DATA_SHELL $AUTO_RUN_DIR/
 
 RUN chmod a+x $AUTO_RUN_DIR/$INSTALL_DATA_SHELL
-
-CMD ["sh","/docker-entrypoint-initdb.d/import.sh"]
