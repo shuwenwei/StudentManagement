@@ -1,6 +1,8 @@
 FROM mysql
 ENV WORK_PATH /usr/local
 
+ENV MYSQL_ROOT_PASSWORD 123456
+
 ENV AUTO_RUN_DIR /docker-entrypoint-initdb.d
 
 ENV MYSQL_FILE stu_db.sql
