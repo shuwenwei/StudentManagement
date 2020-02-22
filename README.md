@@ -286,3 +286,89 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 1
 }
 ```
+# 管理员
+## /institute/{id}
+### method:GET
+示例 /institute/1
+```json
+{
+    "message": " 获取成功",
+    "data": {
+        "id": "1",
+        "name": "信息工程学院1"
+    },
+    "status": 1
+}
+```
+## /institute
+### method: PUT
+请求
+```json
+{
+    "id":"1",
+    "name":"信息工程学院"
+}
+```
+响应
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+## /institute
+### method: GET
+```json
+{
+    "message": "获取成功",
+    "data": [
+        {
+            "id": "1",
+            "name": "信息工程学院"
+        },
+        {
+            "id": "2",
+            "name": "机电工程学院"
+        }
+    ],
+    "status": 1
+}
+```
+## /insitute
+### method: POST
+请求
+```json
+{
+    "id":"3",
+    "name":"学院3"
+}
+```
+响应
+```json
+{
+    "message": "添加成功",
+    "data": null,
+    "status": 1
+}
+```
+## /institute/{id}
+### method: DELETE
+示例
+/institute/3
+成功
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+失败
+```json
+{
+    "message": "无法删除",
+    "data": "无法删除非空的学院",
+    "status": 0
+}
+```
