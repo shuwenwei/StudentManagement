@@ -61,7 +61,7 @@
     <update id="updateInstitute" parameterType="String">
         update institute
         <set>
-            name = #{name}
+            name=#{name}
         </set>
         where id = #{id}
     </update>
@@ -89,7 +89,7 @@
         where id = #{id}
     </select>
 
-    <update id="updateMajor" parameterType="String">
+    <update id="updateMajor" parameterType="major">
         update major
         <set>
             <if test="name != null and name.length() > 0">name = #{name},</if>

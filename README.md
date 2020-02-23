@@ -372,3 +372,125 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 0
 }
 ```
+## /major
+### method: POST
+```json
+{
+    "id":"10",
+    "name":"major10",
+    "instituteId":"2"
+}
+```
+响应
+```json
+{
+    "message": "添加成功",
+    "data": null,
+    "status": 1
+}
+```
+### method: PUT
+```json
+{
+    "id":"10",
+    "instituteId":"1"
+}
+```
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+## /major/{page}
+### method: GET
+示例 /major/1
+```json
+{
+    "message": "获取成功",
+    "data": [
+        {
+            "id": "1",
+            "name": "电气工程及其自动化",
+            "instituteId": null
+        },
+        {
+            "id": "10",
+            "name": "major10",
+            "instituteId": null
+        },
+        {
+            "id": "2",
+            "name": "自动化",
+            "instituteId": null
+        }
+    ],
+    "status": 1
+}
+```
+## /major/{id}
+### method: DELETE
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+## /class/{pageNumber}
+### method: GET
+```json
+{
+    "message": "获取成功",
+    "data": [
+        {
+            "id": "1",
+            "number": "1",
+            "studentNumber": "3",
+            "grade": "2018",
+            "instructor": "user2",
+            "major": "电气工程及其自动化",
+            "majorId": "1"
+        },
+        {
+            "id": "2",
+            "number": "2",
+            "studentNumber": "1",
+            "grade": "2018",
+            "instructor": "user2",
+            "major": "电气工程及其自动化",
+            "majorId": "1"
+        },
+        {
+            "id": "3",
+            "number": "1",
+            "studentNumber": "0",
+            "grade": "2019",
+            "instructor": "user2",
+            "major": "自动化",
+            "majorId": "2"
+        }
+    ],
+    "status": 1
+}
+```
+## /class
+### method: PUT
+```json
+{
+    "id":"1",
+    "number":"1",
+    "majorId":"2",
+    "grade":"2019",
+    "instructor":"6104119053"
+}
+```
+响应
+```json
+{
+    "message": "更新成功",
+    "data": null,
+    "status": 1
+}
+```

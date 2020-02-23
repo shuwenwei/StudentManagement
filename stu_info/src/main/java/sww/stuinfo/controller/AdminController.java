@@ -14,6 +14,7 @@ import sww.stuinfo.utils.CheckBindingUtil;
 import sww.stuinfo.utils.PasswordUtils;
 
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 
@@ -113,11 +114,17 @@ public class AdminController {
     @PostMapping("/major")
     public DefaultResponseBean addMajor(@RequestBody @Valid Major major, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
-        if (adminService.addMajor(major)) {
-            return new DefaultResponseBean("添加成功", null, 1);
-        }else {
-            throw new InvalidFieldException();
+        try {
+            adminService.addMajor(major);
+        }catch (Exception e) {
+            throw new IllegalPropertyException("属性错误");
         }
+        return new DefaultResponseBean("添加成功", null, 1);
+//        if (adminService.addMajor(major)) {
+//            return new DefaultResponseBean("添加成功", null, 1);
+//        }else {
+//            throw new InvalidFieldException();
+//        }
     }
 
     @DeleteMapping("/major/{id}")
