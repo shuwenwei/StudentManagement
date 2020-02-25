@@ -11,7 +11,7 @@
     <insert id="addUser" parameterType="user">
         insert into user
         <choose>
-            <when test="role == 'instructor' or role == 'admin'">
+            <when test="role == 'instructor'.toString() or role == 'admin'.toString()">
                 (id,password,role)
                 values
                 (#{username}, #{password}, #{role})
@@ -30,7 +30,7 @@
             <if test="password != null and password.length() > 0">
                 password = #{password},
             </if>
-            <if test="role == 'stu' or role == 'instructor' or role == 'admin'">
+            <if test="role == 'stu'.toString() or role == 'instructor'.toString() or role == 'admin'.toString()">
                 role = #{role},
             </if>
         </set>
