@@ -562,7 +562,7 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
 响应
 ```json
 {
-    "message": "修改成功",
+    "message": "删除成功",
     "data": null,
     "status": 1
 }
