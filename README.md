@@ -522,4 +522,48 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 1
 }
 ```
-## 
+## /user
+### method: POST
+```json
+{
+    "username":"1111111111",
+    "password":"123456",
+    "role":"admin"
+}
+```
+响应
+```json
+{
+    "message": "添加成功",
+    "data": null,
+    "status": 1
+}
+```
+## /user
+### method: PUT
+```json
+{
+    "username":"1111111111",
+    "password":"1234567",
+    "role":"instructor"
+}
+```
+响应
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+## /user/{username}
+### method: DELETE
+示例 /user/1111111111
+响应
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
