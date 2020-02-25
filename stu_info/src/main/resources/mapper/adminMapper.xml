@@ -147,7 +147,7 @@
         insert into class
         (id,number,maj_id,grade,instructor)
         values
-        (#{id},#{number},#{major},#{grade},#{instructor})
+        (#{id},#{number},#{majorId},#{grade},#{instructor})
     </insert>
 
     <delete id="deleteClazz">

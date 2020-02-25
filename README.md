@@ -494,3 +494,32 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 1
 }
 ```
+## /class
+### method: POST
+```json
+{
+    "id":"10",
+    "number":"1",
+    "majorId":"2",
+    "grade":"2019",
+    "instructor":"6104119053"
+}
+```
+响应
+```json
+{
+    "message": "添加成功",
+    "data": null,
+    "status": 1
+}
+```
+## /class/{id}
+示例 /class/10
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+## 
