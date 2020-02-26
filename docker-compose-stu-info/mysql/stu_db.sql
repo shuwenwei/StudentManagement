@@ -42,7 +42,7 @@ CREATE TABLE `class` (
 
 LOCK TABLES `class` WRITE;
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
-INSERT INTO `class` VALUES ('1','1','1','6104119053','2018'),('2','2','1','6104119053','2018'),('3','1','2','6104119053','2019');
+INSERT INTO `class` VALUES ('1','1','1','6104119053','2019'),('2','2','1','6104119053','2018'),('3','1','2','6104119053','2019');
 /*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `family_member` (
 
 LOCK TABLES `family_member` WRITE;
 /*!40000 ALTER TABLE `family_member` DISABLE KEYS */;
-INSERT INTO `family_member` VALUES (1,'6104119052','1aaaaa','父','job1111','111'),(2,'6104119052','b','母','无','123'),(3,'6104119055','c','父','aa','124124');
+INSERT INTO `family_member` VALUES (1,'6104119052','1aaaaa','string','string','1414124124'),(2,'6104119052','b','母','无','123'),(3,'6104119055','c','父','aa','124124');
 /*!40000 ALTER TABLE `family_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `institute` (
 
 LOCK TABLES `institute` WRITE;
 /*!40000 ALTER TABLE `institute` DISABLE KEYS */;
-INSERT INTO `institute` VALUES ('1','信息工程学院1'),('2','机电工程学院');
+INSERT INTO `institute` VALUES ('1','信息工程学院'),('2','机电工程学院');
 /*!40000 ALTER TABLE `institute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `major` (
 
 LOCK TABLES `major` WRITE;
 /*!40000 ALTER TABLE `major` DISABLE KEYS */;
-INSERT INTO `major` VALUES ('1','电气工程及其自动化','1'),('2','自动化','1');
+INSERT INTO `major` VALUES ('1','电气工程及其自动化','1'),('11','major111','2'),('2','自动化','1');
 /*!40000 ALTER TABLE `major` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,12 +144,12 @@ CREATE TABLE `stu_info` (
   KEY `instructor` (`instructor`),
   KEY `maj_id` (`maj_id`),
   KEY `cls_id` (`cls_id`),
-  KEY `ins_id` (`ins_id`),
+  KEY `stu_info_ibfk_5` (`ins_id`),
   CONSTRAINT `stu_info_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `stu_info_ibfk_2` FOREIGN KEY (`instructor`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT,
   CONSTRAINT `stu_info_ibfk_3` FOREIGN KEY (`maj_id`) REFERENCES `class` (`maj_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `stu_info_ibfk_4` FOREIGN KEY (`cls_id`) REFERENCES `class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `stu_info_ibfk_5` FOREIGN KEY (`ins_id`) REFERENCES `major` (`ins_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `stu_info_ibfk_5` FOREIGN KEY (`ins_id`) REFERENCES `institute` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -184,7 +184,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('6104119052','123456','stu'),('6104119053','123456789','instructor'),('6104119054','password','admin'),('6104119055','123456','stu'),('6104119056','123456','stu'),('6104119057','123456','stu'),('6104119058','111111','instructor'),('6104119059','9f23844f705ceec957fe05d05fd0917a','admin');
+INSERT INTO `user` VALUES ('6104119052','9f23844f705ceec957fe05d05fd0917a','stu'),('6104119053','9f23844f705ceec957fe05d05fd0917a','instructor'),('6104119054','password','admin'),('6104119055','123456','stu'),('6104119056','123456','stu'),('6104119057','123456','stu'),('6104119058','111111','instructor'),('6104119059','9f23844f705ceec957fe05d05fd0917a','admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('6104119052','user1','男','111','111111','111111','1113414','jx','xy','aefofeaf'),('6104119053','user2','男','12113','13134','13413','1343','jx','a','afeq'),('6104119055','user3','男','1111111','124124','12412','11111111','aa','aa','af');
+INSERT INTO `user_info` VALUES ('6104119052','sww2','男','13911111111','111111111','1111111','1111111111111111','jiangxi','xiny','1111111'),('6104119053','user2','男','12113','13134','13413','1343','jx','a','afeq'),('6104119055','user3','男','1111111','124124','12412','11111111','aa','aa','af');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -230,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-09 21:15:43
+-- Dump completed on 2020-02-26 21:10:41
