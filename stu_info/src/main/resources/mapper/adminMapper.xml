@@ -85,7 +85,7 @@
     </select>
 
     <select id="getMajor" resultType="major">
-        select * from major
+        select id,name,ins_id instituteId from major
         where id = #{id}
     </select>
 
@@ -112,7 +112,7 @@
 
 
     <sql id="clazzSql">
-        select class.id id, number, major.name major, ui.name instructor, grade, count(si.cls_id) studentNumber,major.id majorId
+        select class.id id, number, major.name major, ui.name instructor, grade, count(si.cls_id) studentNumber,major.id majorId,class.instructor instructorId
         from class
         left join user_info ui
         on class.instructor = ui.id

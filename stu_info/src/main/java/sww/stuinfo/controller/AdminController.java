@@ -143,6 +143,16 @@ public class AdminController {
         return new DefaultResponseBean("获取成功",pageClazz,1);
     }
 
+    @GetMapping("/class")
+    public DefaultResponseBean getClazz(@RequestParam String id) {
+        Clazz clazz = adminService.findClazzById(id);
+        if (clazz != null) {
+            return new DefaultResponseBean("获取成功", clazz, 1);
+        }else {
+            throw new IllegalPropertyException("班级不存在");
+        }
+    }
+
     @PutMapping("/class")
     public DefaultResponseBean updateClazz(@RequestBody @Valid Clazz clazz, BindingResult bindingResult) {
         CheckBindingUtil.checkBinding(bindingResult);
@@ -212,11 +222,11 @@ public class AdminController {
 
 
 
-    @GetMapping("/admin/user/{id}")
-    public DefaultResponseBean findUserInfoById(@PathVariable String id) {
-        UserInfo userInfo = userService.getUserInfoByUsername(id);
-        return new DefaultResponseBean("获取成功",userInfo,1);
-    }
+//    @GetMapping("/admin/userinfo/{id}")
+//    public DefaultResponseBean findUserInfoById(@PathVariable String id) {
+//        UserInfo userInfo = userService.getUserInfoByUsername(id);
+//        return new DefaultResponseBean("获取成功",userInfo,1);
+//    }
 
     @PutMapping("/user/info")
     public DefaultResponseBean updateUserInfo(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {

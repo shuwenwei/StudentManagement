@@ -19,7 +19,7 @@ public class UserInfo {
     private String username;
     private String name;
     private String sex;
-    @Pattern(regexp = "^((13[0-9])|(15[^4,\\\\D])|(18[0,5-9]))\\\\d{8}$",
+    @Pattern(regexp = "^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$",
     message = "手机号格式错误")
     private String telephone;
     private String qq;

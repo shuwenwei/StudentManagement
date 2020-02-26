@@ -3,8 +3,11 @@ package sww.stuinfo.service;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import sww.stuinfo.mapper.AdminMapper;
 import sww.stuinfo.pojo.*;
+import sww.stuinfo.utils.CheckBindingUtil;
 
 import java.util.List;
 
@@ -31,8 +34,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean addStudentInfo(RequestStudentInfo requestStudentInfo) {
-        Clazz clazz = findClazzById(requestStudentInfo.getUsername());
-        requestStudentInfo.setInstructorId(clazz.getInstructor());
+        Clazz clazz = findClazzById(requestStudentInfo.getClassId());
+        requestStudentInfo.setMajorId(clazz.getMajorId());
+        requestStudentInfo.setInstructorId(clazz.getInstructorId());
         Major major = getMajor(clazz.getMajorId());
         requestStudentInfo.setInstituteId(major.getInstituteId());
         return adminMapper.addStudentInfo(requestStudentInfo);
