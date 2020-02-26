@@ -438,6 +438,24 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 1
 }
 ```
+## /class?id={id}
+### method: GET
+示例: /class?id=1
+```json
+{
+    "message": "获取成功",
+    "data": {
+        "id": "1",
+        "number": "1",
+        "studentNumber": "3",
+        "grade": "2019",
+        "instructor": "user2",
+        "major": "电气工程及其自动化",
+        "majorId": "1"
+    },
+    "status": 1
+}
+```
 ## /class/{pageNumber}
 ### method: GET
 ```json
@@ -514,6 +532,7 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
 }
 ```
 ## /class/{id}
+### method: DELTE
 示例 /class/10
 ```json
 {
@@ -563,6 +582,128 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
 ```json
 {
     "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+## /user/info/{username}
+### method: GET
+示例 /user/info/6104119052
+```json
+{
+    "message": "获取成功",
+    "data": {
+        "username": "6104119052",
+        "name": "sww1",
+        "sex": "男",
+        "telephone": "111",
+        "qq": "111111111",
+        "weChat": "1111111",
+        "idCard": "1111111111111111",
+        "province": "jiangxi",
+        "city": "xiny",
+        "address": "1111111",
+        "familyMembers": [
+            {
+                "id": "1",
+                "studentUsername": "6104119052",
+                "name": "1aaaaa",
+                "relation": "string",
+                "job": "string",
+                "telephone": "1414124124"
+            },
+            {
+                "id": "2",
+                "studentUsername": "6104119052",
+                "name": "b",
+                "relation": "母",
+                "job": "无",
+                "telephone": "123"
+            }
+        ]
+    },
+    "status": 1
+}
+```
+## /user/info
+### method: PUT
+```json
+{
+        "username": "6104119052",
+        "name": "sww2",
+        "sex": "男",
+        "telephone": "13911111111",
+        "qq": "111111111",
+        "weChat": "1111111",
+        "idCard": "1111111111111111",
+        "province": "jiangxi",
+        "city": "xiny",
+        "address": "1111111"
+}
+```
+响应  
+成功
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+失败示例
+```json
+{
+    "message": "格式错误",
+    "data": "手机号格式错误",
+    "status": 0
+}
+```
+## /user/info/{id}
+### method: DELETE
+示例: /user/info/6104119052
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 0
+}
+```
+## /admin/student/{id}
+### method: GET
+示例: /admin/student/6104119052
+```json
+{
+    "message": "获取成功",
+    "data": {
+        "username": "6104119052",
+        "institute": "信息工程学院",
+        "major": "电气工程及其自动化",
+        "grade": "2019",
+        "number": "1",
+        "instructor": {
+            "username": "6104119053",
+            "name": "user2",
+            "sex": "男",
+            "telephone": "12113",
+            "qq": "13134",
+            "weChat": "13413"
+        }
+    },
+    "status": 1
+}
+```
+## /admin/student
+### method: POST
+```json
+{
+        "username": "6104119055",
+        "classId":"1"
+}
+```
+响应
+```json
+{
+    "message": "添加成功",
     "data": null,
     "status": 1
 }
