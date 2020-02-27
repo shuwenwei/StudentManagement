@@ -708,3 +708,94 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODIwMTA3NTAsImp0aSI6IjYxMDQxMTkwN
     "status": 1
 }
 ```
+## /admin/student
+### method: PUT
+```json
+{
+    "username": "6104119055",
+    "classId":"2"
+}
+```
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+## /admin/student/{id}
+### method: DELETE
+示例 /admin/student/6104119055
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+## /family
+### method:PUT
+```json
+{
+    "id":"1",
+    "studentUsername":"6104119052",
+    "name":"aaa",
+    "relation":"r",
+    "telephone":"13911111111"
+}
+```
+```json
+{
+    "message": "修改成功",
+    "data": null,
+    "status": 1
+}
+```
+## /family
+### method: POST
+```json
+{
+    "id":"12",
+    "studentUsername":"6104119055",
+    "name":"aaa",
+    "relation":"r",
+    "job":"无",
+    "telephone":"13911111111"
+}
+```
+```json
+{
+    "message": "添加成功",
+    "data": null,
+    "status": 1
+}
+```
+## /family/{id}
+### method: DELETE
+示例: family/12
+```json
+{
+    "message": "删除成功",
+    "data": null,
+    "status": 1
+}
+```
+## /admin/userinfo?name=string&page=int
+### method: GET
+示例: /admin/userinfo?name=er&page=1
+```json
+{
+    "message": "获取成功",
+    "data": [
+        {
+            "username": "6104119053",
+            "name": "user2"
+        },
+        {
+            "username": "6104119055",
+            "name": "user3"
+        }
+    ],
+    "status": 1
+}
+```
