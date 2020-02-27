@@ -14,7 +14,6 @@ public class FamilyMember {
     @NotNull
     @NotBlank(message = "id不能为空")
     private String id;
-    @NotNull
     private String studentUsername;
     private String name;
     private String relation;

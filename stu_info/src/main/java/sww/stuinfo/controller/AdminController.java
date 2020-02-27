@@ -329,7 +329,7 @@ public class AdminController {
     public DefaultResponseBean findUserByName(@RequestParam String name, @RequestParam int page) {
         List<UserInfo> users = adminService.findUserByName(name);
         if (!users.isEmpty()) {
-            return new DefaultResponseBean("获取成功",null,1);
+            return new DefaultResponseBean("获取成功",users,1);
         }else {
             throw new UserNotExistException();
         }

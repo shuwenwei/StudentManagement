@@ -126,9 +126,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean updateStudentInfo(RequestStudentInfo requestStudentInfo) {
-        Clazz clazz = findClazzById(requestStudentInfo.getUsername());
-        requestStudentInfo.setInstructorId(clazz.getInstructor());
+        Clazz clazz = findClazzById(requestStudentInfo.getClassId());
+        requestStudentInfo.setInstructorId(clazz.getInstructorId());
         Major major = getMajor(clazz.getMajorId());
+        requestStudentInfo.setMajorId(clazz.getMajorId());
         requestStudentInfo.setInstituteId(major.getInstituteId());
         return adminMapper.updateStudentInfo(requestStudentInfo);
     }
